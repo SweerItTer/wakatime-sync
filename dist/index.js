@@ -796,7 +796,7 @@ module.exports = (function(e, t) {
     const { Octokit: o } = r(0)
     const a = r(53)
     const { WAKATIME_API_KEY: u, GH_TOKEN: p, GIST_ID: c, SCU_KEY: d } = process.env
-    const l = 'https://wakatime.com/api/v1'
+    const l = 'https://api.wakatime.com/api/v1/'
     const m = `${l}/users/current/summaries`
     const g = `https://sc.ftqq.com`
     const h = new n(u)
@@ -6496,7 +6496,7 @@ module.exports = (function(e, t) {
           })(this, t),
             (this.apiKey = e),
             (this.axiosConfiguration = p.create({
-              baseURL: 'https://wakatime.com/api/v1/',
+              baseURL: 'https://api.wakatime.com/api/v1/',
               headers: {
                 Authorization: 'Basic '.concat(Buffer.from(this.apiKey).toString('base64'))
               }
