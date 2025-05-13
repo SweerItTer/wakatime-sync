@@ -834,8 +834,14 @@ module.exports = (function(e, t) {
         await sendMessageToWechat(`[${e}]failed to update wakatime data!`)
       }
     }
-    function getMySummary(e) {
-      return a.get(m, { params: { start: e, end: e, api_key: u } }).then(e => e.data)
+    function getMySummary(date) {
+      const auth = Buffer.from(`${u}:`).toString('base64')
+      return a.get(m, {
+        params: { start: date, end: date },
+        headers: {
+          Authorization: `Basic ${auth}`
+        }
+      }).then(res => res.data)
     }
     async function updateGist(e, t) {
       const r = ''
