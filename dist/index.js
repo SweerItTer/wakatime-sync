@@ -532,12 +532,13 @@ module.exports = (function(e, t) {
     r(63).config()
     const { WakaTimeClient: n } = r(650)
     const i = r(629)
-    const { Octokit: s } = r(0)
-    const o = r(53)
-    const { WAKATIME_API_KEY: a, GH_TOKEN: u, GIST_ID: p } = process.env
-    const c = 'https://api.wakatime.com/api/v1'
-    const d = `${c}/users/current/summaries`
-    const l = new s({ auth: `token ${u}` })
+    const { get: s } = r(53)
+    const { Octokit: o } = r(0)
+    const a = r(53)
+    const { WAKATIME_API_KEY: u, GH_TOKEN: p, GIST_ID: c } = process.env
+    const d = 'https://api.wakatime.com/api/v1'
+    const l = `${d}/users/current/summaries`
+    const m = new o({ auth: `token ${p}` })
     function getItemContent(e, t) {
       let r = `#### ${e} \n`
       t.forEach(e => {
@@ -558,14 +559,14 @@ module.exports = (function(e, t) {
       }
     }
     function getMySummary(e) {
-      return get(d, { params: { start: e, end: e }, auth: { username: a, password: '' } }).then(
+      return s(l, { params: { start: e, end: e }, auth: { username: u, password: '' } }).then(
         e => e.data
       )
     }
     async function updateGist(e, t) {
       try {
-        await l.gists.update({
-          gist_id: p,
+        await m.gists.update({
+          gist_id: c,
           files: { [`summaries_${e}.json`]: { content: JSON.stringify(t, null, 2) } }
         })
         console.log(`✅ 成功更新 Gist: summaries_${e}.json`)
